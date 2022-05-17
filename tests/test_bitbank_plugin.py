@@ -17,6 +17,48 @@ class TestBitbankPlugin:
         chain_type = BitbankPlugin.can_handle(transaction)
         assert chain_type
 
+    def test_get_caajs_buy_fee(self):
+        test_data = TestBitbankPlugin._get_test_data(
+            "tests/data/bitbank_sample_with_data_type.json", 0
+        )
+        transaction = BitbankTransaction(test_data)
+        mock = TestBitbankPlugin._get_token_table_mock()
+        caajs = BitbankPlugin.get_caajs(transaction, mock)
+        assert caajs[2].executed_at == "2022/03/14 11:55:24"
+        assert caajs[2].chain == "bitbank"
+        assert caajs[2].platform == "bitbank"
+        assert caajs[2].application == "exchange"
+        assert caajs[2].transaction_id == "1215140489"
+        assert caajs[2].type == "lose"
+        assert caajs[2].amount == Decimal("71.4924")
+        assert caajs[2].token_symbol == "test_symbol"
+        assert caajs[2].token_original_id == "jpy"
+        assert caajs[2].caaj_from == "self"
+        assert caajs[2].token_symbol_uuid == "3a2570c5-15c4-2860-52a8-bff14f27a236"
+        assert caajs[2].caaj_to == "bitbank"
+        assert caajs[2].comment == ""
+
+    def test_get_caajs_sell_fee(self):
+        test_data = TestBitbankPlugin._get_test_data(
+            "tests/data/bitbank_sample_with_data_type.json", 1
+        )
+        transaction = BitbankTransaction(test_data)
+        mock = TestBitbankPlugin._get_token_table_mock()
+        caajs = BitbankPlugin.get_caajs(transaction, mock)
+        assert caajs[2].executed_at == "2022/03/14 11:55:24"
+        assert caajs[2].chain == "bitbank"
+        assert caajs[2].platform == "bitbank"
+        assert caajs[2].application == "exchange"
+        assert caajs[2].transaction_id == "1215140486"
+        assert caajs[2].type == "lose"
+        assert caajs[2].amount == Decimal("71.4924")
+        assert caajs[2].token_symbol == "test_symbol"
+        assert caajs[2].token_original_id == "jpy"
+        assert caajs[2].caaj_from == "self"
+        assert caajs[2].token_symbol_uuid == "3a2570c5-15c4-2860-52a8-bff14f27a236"
+        assert caajs[2].caaj_to == "bitbank"
+        assert caajs[2].comment == ""
+
     def test_get_caajs_buy_lose(self):
         test_data = TestBitbankPlugin._get_test_data(
             "tests/data/bitbank_sample_with_data_type.json", 0

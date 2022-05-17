@@ -21,6 +21,9 @@ class BitbankPlugin:
         cls, transaction: Transaction, token_table: TokenOriginalIdTable
     ) -> Union[list, None]:
         caaj = []
+        caaj_journal_lose = None
+        caaj_journal_get = None
+        caaj_journal_fee = None
 
         datetime_jst = datetime.datetime.strptime(
             transaction.get_timestamp(), "%Y/%m/%d %H:%M:%S"
@@ -30,6 +33,7 @@ class BitbankPlugin:
         )
         token_pair = transaction.get_token_pair().split("_")
         trade_uuid = cls._get_uuid()
+        fee = transaction.get_transaction_fee()
 
         trade_type = transaction.get_trade_type()
         if trade_type == "buy":
@@ -84,10 +88,22 @@ class BitbankPlugin:
                 "",
             )
 
-            caaj.append(caaj_journal_lose)
-            caaj.append(caaj_journal_get)
-
-            return caaj
+            caaj_journal_fee = CaajJournal(
+                datetime_utc,
+                cls.chain,
+                cls.platform,
+                "exchange",
+                transaction.get_transaction_id(),
+                trade_uuid,
+                "lose",
+                fee,
+                token_symbol_lose,
+                token_original_id_lose,
+                symbol_uuid_lose,
+                "self",
+                "bitbank",
+                "",
+            )
 
         elif trade_type == "sell":
             token_original_id_get = token_pair[1]
@@ -141,10 +157,27 @@ class BitbankPlugin:
                 "",
             )
 
-            caaj.append(caaj_journal_lose)
-            caaj.append(caaj_journal_get)
+            caaj_journal_fee = CaajJournal(
+                datetime_utc,
+                cls.chain,
+                cls.platform,
+                "exchange",
+                transaction.get_transaction_id(),
+                trade_uuid,
+                "lose",
+                fee,
+                token_symbol_get,
+                token_original_id_get,
+                symbol_uuid_get,
+                "self",
+                "bitbank",
+                "",
+            )
+        caaj.append(caaj_journal_lose)
+        caaj.append(caaj_journal_get)
+        caaj.append(caaj_journal_fee)
 
-            return caaj
+        return caaj
 
     @classmethod
     def _get_uuid(cls) -> str:
