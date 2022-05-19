@@ -114,11 +114,11 @@ requests = "*"
 
 [[package]]
 name = "certifi"
-version = "2021.10.8"
+version = "2022.5.18"
 description = "Python package for providing Mozilla's CA Bundle."
 category = "main"
 optional = false
-python-versions = "*"
+python-versions = ">=3.5"
 
 [[package]]
 name = "cfgv"
@@ -833,8 +833,8 @@ web3 = "^5.29.0"
 [package.source]
 type = "git"
 url = 'https://github.com/watagori/senkalib.git'
-reference = 'a6283121956b33e85765ca921a12642c1dbcaf10'
-resolved_reference = "a6283121956b33e85765ca921a12642c1dbcaf10"
+reference = '10c649cffe40975cfcaa5121402c0a262b755667'
+resolved_reference = "10c649cffe40975cfcaa5121402c0a262b755667"
 
 [[package]]
 name = "six"
@@ -968,7 +968,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "38b6e125e1e5d7e78667463c0b33d00aaf5ebc4ef19df8ede43a75f7d0860603"
+content-hash = "3f7e55700547f9cf1e41b82dc9925776f0e06be478e1e4ac3cc7048a93b0d0d5"
 
 [metadata.files]
 aiohttp = [
@@ -1098,8 +1098,8 @@ bscscan-python = [
     {file = "bscscan_python-2.0.0-py3-none-any.whl", hash = "sha256:8ef6023d0d4c667ed61d56da6a75c339243e02b1d9b5c2d3c8b327639bcce768"},
 ]
 certifi = [
-    {file = "certifi-2021.10.8-py2.py3-none-any.whl", hash = "sha256:d62a0163eb4c2344ac042ab2bdf75399a71a2d8c7d47eac2e2ee91b9d6339569"},
-    {file = "certifi-2021.10.8.tar.gz", hash = "sha256:78884e7c1d4b00ce3cea67b44566851c4343c120abd683433ce934a68ea58872"},
+    {file = "certifi-2022.5.18-py3-none-any.whl", hash = "sha256:8d15a5a7fde18536a249c49e07e8e462b8fc13de21b3c80e8a68315dfa227c99"},
+    {file = "certifi-2022.5.18.tar.gz", hash = "sha256:6ae10321df3e464305a46e997da41ea56c1d311fb9ff1dd4e04d6f14653ec63a"},
 ]
 cfgv = [
     {file = "cfgv-3.3.1-py2.py3-none-any.whl", hash = "sha256:c6a0883f3917a037485059700b9e75da2464e6c27051014ad85ba6aaa5884426"},
