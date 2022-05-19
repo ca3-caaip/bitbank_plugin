@@ -6,6 +6,8 @@ from senkalib.caaj_journal import CaajJournal
 from senkalib.chain.transaction import Transaction
 from senkalib.token_original_id_table import TokenOriginalIdTable
 
+CHAIN_FROM_ORIGINAL_ID = {"mona": "monacoin", "jpy": "boj"}
+
 
 class BitbankPlugin:
     chain = "bitbank"
@@ -42,16 +44,16 @@ class BitbankPlugin:
             amount_get = transaction.get_amount()
             amount_lose = transaction.get_amount() * transaction.get_price()
             token_symbol_lose = token_table.get_symbol(
-                BitbankPlugin.chain, token_original_id_lose
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
             )
             symbol_uuid_lose = token_table.get_symbol_uuid(
-                BitbankPlugin.chain, token_original_id_lose
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
             )
             token_symbol_get = token_table.get_symbol(
-                BitbankPlugin.chain, token_original_id_get
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
             )
             symbol_uuid_get = token_table.get_symbol_uuid(
-                BitbankPlugin.chain, token_original_id_get
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
             )
 
             caaj_journal_lose = CaajJournal(
@@ -111,16 +113,16 @@ class BitbankPlugin:
             amount_lose = transaction.get_amount()
             amount_get = transaction.get_amount() * transaction.get_price()
             token_symbol_lose = token_table.get_symbol(
-                BitbankPlugin.chain, token_original_id_lose
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
             )
             symbol_uuid_lose = token_table.get_symbol_uuid(
-                BitbankPlugin.chain, token_original_id_lose
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
             )
             token_symbol_get = token_table.get_symbol(
-                BitbankPlugin.chain, token_original_id_get
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
             )
             symbol_uuid_get = token_table.get_symbol_uuid(
-                BitbankPlugin.chain, token_original_id_get
+                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
             )
 
             caaj_journal_lose = CaajJournal(
