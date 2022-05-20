@@ -19,6 +19,7 @@ pytest-mock = "^3.7.0"
 pyright = "^1.1.227"
 black = "^22.1.0"
 isort = "^5.10.1"
+requests-mock = "^1.9.3"
 
 [tool.isort]
 profile = "black"

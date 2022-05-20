@@ -111,3 +111,4 @@ tests/get_transaction.py
 
 # intelij
 .idea/
+/.vscode/settings.json
