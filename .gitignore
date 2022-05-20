@@ -1,5 +1,3 @@
-*.csv
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -111,4 +109,6 @@ tests/get_transaction.py
 
 # intelij
 .idea/
+
+#vscode
 /.vscode/settings.json
