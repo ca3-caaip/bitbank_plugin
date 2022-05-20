@@ -1,6 +1,7 @@
 import datetime
 import uuid
-from typing import Union
+from decimal import Decimal
+from typing import List, Union
 
 from senkalib.caaj_journal import CaajJournal
 from senkalib.chain.transaction import Transaction
@@ -21,11 +22,42 @@ class BitbankPlugin:
     @classmethod
     def get_caajs(
         cls, transaction: Transaction, token_table: TokenOriginalIdTable
-    ) -> Union[list, None]:
+    ) -> Union[List[CaajJournal], None]:
+        if set(transaction.transaction.keys()) == set(
+            [
+                "注文ID",
+                "取引ID",
+                "通貨ペア",
+                "タイプ",
+                "売/買",
+                "数量",
+                "価格",
+                "手数料",
+                "M/T",
+                "取引日時",
+                "data_type",
+            ]
+        ):
+            return BitbankPlugin._get_caaj_exchange(transaction, token_table)
+        else:
+            raise ValueError("Invalid transaction data type")
+
+    @classmethod
+    def _get_caaj_exchange(
+        cls, transaction: Transaction, token_table: TokenOriginalIdTable
+    ) -> Union[List[CaajJournal], None]:
         caaj = []
-        caaj_journal_lose = None
-        caaj_journal_get = None
-        caaj_journal_fee = None
+        amount_lose = Decimal(0)
+        amount_get = Decimal(0)
+        token_original_id_lose = ""
+        token_original_id_get = ""
+        token_original_id_fee = ""
+        symbol_uuid_lose = ""
+        symbol_uuid_get = ""
+        symbol_uuid_fee = ""
+        token_symbol_lose = ""
+        token_symbol_get = ""
+        token_symbol_fee = ""
 
         datetime_jst = datetime.datetime.strptime(
             transaction.get_timestamp(), "%Y/%m/%d %H:%M:%S"
@@ -55,57 +87,9 @@ class BitbankPlugin:
             symbol_uuid_get = token_table.get_symbol_uuid(
                 CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
             )
-
-            caaj_journal_lose = CaajJournal(
-                datetime_utc,
-                cls.chain,
-                cls.platform,
-                "exchange",
-                transaction.get_transaction_id(),
-                trade_uuid,
-                "lose",
-                amount_lose,
-                token_symbol_lose,
-                token_original_id_lose,
-                symbol_uuid_lose,
-                "self",
-                "bitbank",
-                "",
-            )
-
-            caaj_journal_get = CaajJournal(
-                datetime_utc,
-                cls.chain,
-                cls.platform,
-                "exchange",
-                transaction.get_transaction_id(),
-                trade_uuid,
-                "get",
-                amount_get,
-                token_symbol_get,
-                token_original_id_get,
-                symbol_uuid_get,
-                "self",
-                "bitbank",
-                "",
-            )
-
-            caaj_journal_fee = CaajJournal(
-                datetime_utc,
-                cls.chain,
-                cls.platform,
-                "exchange",
-                transaction.get_transaction_id(),
-                trade_uuid,
-                "lose",
-                fee,
-                token_symbol_lose,
-                token_original_id_lose,
-                symbol_uuid_lose,
-                "self",
-                "bitbank",
-                "",
-            )
+            token_symbol_fee = token_symbol_lose
+            token_original_id_fee = token_original_id_lose
+            symbol_uuid_fee = symbol_uuid_lose
 
         elif trade_type == "sell":
             token_original_id_get = token_pair[1]
@@ -124,41 +108,48 @@ class BitbankPlugin:
             symbol_uuid_get = token_table.get_symbol_uuid(
                 CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
             )
+            token_symbol_fee = token_symbol_get
+            token_original_id_fee = token_original_id_get
+            symbol_uuid_fee = symbol_uuid_get
 
-            caaj_journal_lose = CaajJournal(
-                datetime_utc,
-                cls.chain,
-                cls.platform,
-                "exchange",
-                transaction.get_transaction_id(),
-                trade_uuid,
-                "lose",
-                amount_lose,
-                token_symbol_lose,
-                token_original_id_lose,
-                symbol_uuid_lose,
-                "self",
-                "bitbank",
-                "",
-            )
+        caaj_journal_lose = CaajJournal(
+            datetime_utc,
+            cls.chain,
+            cls.platform,
+            "exchange",
+            transaction.get_transaction_id(),
+            trade_uuid,
+            "lose",
+            amount_lose,
+            token_symbol_lose,
+            token_original_id_lose,
+            symbol_uuid_lose,
+            "self",
+            "bitbank",
+            "",
+        )
 
-            caaj_journal_get = CaajJournal(
-                datetime_utc,
-                cls.chain,
-                cls.platform,
-                "exchange",
-                transaction.get_transaction_id(),
-                trade_uuid,
-                "get",
-                amount_get,
-                token_symbol_get,
-                token_original_id_get,
-                symbol_uuid_get,
-                "self",
-                "bitbank",
-                "",
-            )
+        caaj_journal_get = CaajJournal(
+            datetime_utc,
+            cls.chain,
+            cls.platform,
+            "exchange",
+            transaction.get_transaction_id(),
+            trade_uuid,
+            "get",
+            amount_get,
+            token_symbol_get,
+            token_original_id_get,
+            symbol_uuid_get,
+            "self",
+            "bitbank",
+            "",
+        )
 
+        caaj.append(caaj_journal_lose)
+        caaj.append(caaj_journal_get)
+
+        if fee > Decimal(0):
             caaj_journal_fee = CaajJournal(
                 datetime_utc,
                 cls.chain,
@@ -168,16 +159,14 @@ class BitbankPlugin:
                 trade_uuid,
                 "lose",
                 fee,
-                token_symbol_get,
-                token_original_id_get,
-                symbol_uuid_get,
+                token_symbol_fee,
+                token_original_id_fee,
+                symbol_uuid_fee,
                 "self",
                 "bitbank",
                 "",
             )
-        caaj.append(caaj_journal_lose)
-        caaj.append(caaj_journal_get)
-        caaj.append(caaj_journal_fee)
+            caaj.append(caaj_journal_fee)
 
         return caaj
 

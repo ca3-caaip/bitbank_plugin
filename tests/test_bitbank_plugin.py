@@ -77,6 +77,23 @@ class TestBitbankPlugin:
         assert caajs[2].caaj_to == "bitbank"
         assert caajs[2].comment == ""
 
+    def test_get_caajs_get_fee_zero(self, requests_mock):
+        test_data = TestBitbankPlugin._get_test_data(
+            "tests/data/bitbank_sample_with_data_type.json", 2
+        )
+        transaction = BitbankTransaction(test_data)
+        data = Path(
+            "%s/data/token_original_id.csv" % os.path.dirname(__file__)
+        ).read_text()
+        requests_mock.get(TestBitbankPlugin.TOKEN_ORIGINAL_IDS_URL, text=data)
+        token_original_ids = TokenOriginalIdTable(
+            TestBitbankPlugin.TOKEN_ORIGINAL_IDS_URL
+        )
+
+        caajs = BitbankPlugin.get_caajs(transaction, token_original_ids)
+
+        assert len(caajs) == 2
+
     def test_get_caajs_buy_lose(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
             "tests/data/bitbank_sample_with_data_type.json", 0
