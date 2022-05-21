@@ -21,7 +21,7 @@ class BitbankPlugin:
 
     @classmethod
     def get_caajs(
-        cls, transaction: Transaction, token_table: TokenOriginalIdTable
+        cls, address: str, transaction: Transaction, token_table: TokenOriginalIdTable
     ) -> Union[List[CaajJournal], None]:
         if set(transaction.transaction.keys()) == set(
             [
