@@ -179,7 +179,6 @@ class BitbankPlugin:
                 "手数料",
                 "M/T",
                 "取引日時",
-                "data_type",
             ]
         ):
             return BitbankSupport.EXCHANGE

@@ -16,15 +16,16 @@ class TestBitbankPlugin:
 
     def test_can_handle_bitbank(self):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 0
+            "tests/data/bitbank_sample.json", 0
         )
         transaction = BitbankTransaction(test_data)
         chain_type = BitbankPlugin.can_handle(transaction)
+        print(chain_type)
         assert chain_type
 
     def test_get_caajs_buy_fee(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 0
+            "tests/data/bitbank_sample.json", 0
         )
         transaction = BitbankTransaction(test_data)
         data = Path(
@@ -51,7 +52,7 @@ class TestBitbankPlugin:
 
     def test_get_caajs_sell_fee(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 1
+            "tests/data/bitbank_sample.json", 1
         )
         transaction = BitbankTransaction(test_data)
         data = Path(
@@ -79,7 +80,7 @@ class TestBitbankPlugin:
 
     def test_get_caajs_get_fee_zero(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 2
+            "tests/data/bitbank_sample.json", 2
         )
         transaction = BitbankTransaction(test_data)
         data = Path(
@@ -96,7 +97,7 @@ class TestBitbankPlugin:
 
     def test_get_caajs_buy_lose(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 0
+            "tests/data/bitbank_sample.json", 0
         )
         transaction = BitbankTransaction(test_data)
         data = Path(
@@ -124,7 +125,7 @@ class TestBitbankPlugin:
 
     def test_get_caajs_buy_get(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 0
+            "tests/data/bitbank_sample.json", 0
         )
         transaction = BitbankTransaction(test_data)
         data = Path(
@@ -152,7 +153,7 @@ class TestBitbankPlugin:
 
     def test_get_caajs_sell_lose(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 1
+            "tests/data/bitbank_sample.json", 1
         )
         transaction = BitbankTransaction(test_data)
         data = Path(
@@ -180,7 +181,7 @@ class TestBitbankPlugin:
 
     def test_get_caajs_sell_get(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
-            "tests/data/bitbank_sample_with_data_type.json", 1
+            "tests/data/bitbank_sample.json", 1
         )
         transaction = BitbankTransaction(test_data)
         data = Path(
