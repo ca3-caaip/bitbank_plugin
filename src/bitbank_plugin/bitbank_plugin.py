@@ -1,6 +1,7 @@
 import datetime
 import uuid
 from decimal import Decimal
+from enum import Enum, auto
 from typing import List, Union
 
 from senkalib.caaj_journal import CaajJournal
@@ -10,34 +11,24 @@ from senkalib.token_original_id_table import TokenOriginalIdTable
 CHAIN_FROM_ORIGINAL_ID = {"mona": "monacoin", "jpy": "boj"}
 
 
+class BitbankSupport(Enum):
+    EXCHANGE = auto()
+    UNSUPPORTED = auto()
+
+
 class BitbankPlugin:
     chain = "bitbank"
     platform = "bitbank"
 
     @classmethod
     def can_handle(cls, transaction: Transaction) -> bool:
-        chain_type = transaction.get_transaction_data_type()
-        return cls.chain in chain_type
+        return BitbankPlugin._check_support(transaction) == BitbankSupport.EXCHANGE
 
     @classmethod
     def get_caajs(
         cls, address: str, transaction: Transaction, token_table: TokenOriginalIdTable
     ) -> Union[List[CaajJournal], None]:
-        if set(transaction.transaction.keys()) == set(
-            [
-                "注文ID",
-                "取引ID",
-                "通貨ペア",
-                "タイプ",
-                "売/買",
-                "数量",
-                "価格",
-                "手数料",
-                "M/T",
-                "取引日時",
-                "data_type",
-            ]
-        ):
+        if BitbankPlugin._check_support(transaction) == BitbankSupport.EXCHANGE:
             return BitbankPlugin._get_caaj_exchange(transaction, token_table)
         else:
             raise ValueError("Invalid transaction data type")
@@ -173,3 +164,24 @@ class BitbankPlugin:
     @classmethod
     def _get_uuid(cls) -> str:
         return str(uuid.uuid4())
+
+    @staticmethod
+    def _check_support(transaction: Transaction) -> BitbankSupport:
+        if transaction.transaction.keys() == set(
+            [
+                "注文ID",
+                "取引ID",
+                "通貨ペア",
+                "タイプ",
+                "売/買",
+                "数量",
+                "価格",
+                "手数料",
+                "M/T",
+                "取引日時",
+                "data_type",
+            ]
+        ):
+            return BitbankSupport.EXCHANGE
+        else:
+            return BitbankSupport.UNSUPPORTED
