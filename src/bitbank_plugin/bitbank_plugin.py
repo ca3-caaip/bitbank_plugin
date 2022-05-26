@@ -60,7 +60,7 @@ class BitbankPlugin:
         trade_uuid = cls._get_uuid()
         fee = transaction.get_transaction_fee()
 
-        trade_type = transaction.get_trade_type()
+        trade_type = transaction.get_side()
         if trade_type == "buy":
             token_original_id_get = token_pair[0]
             token_original_id_lose = token_pair[1]
