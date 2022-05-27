@@ -1,4 +1,4 @@
-# osmosis plugin
+# bitbank plugin
 
 ## docker
 
@@ -8,7 +8,7 @@ $ docker-compose up -d
 
 ### For access to shell in the container
 
-$ docker-compose exec osmosis_plugin bash
+$ docker-compose exec bitbank_plugin bash
 
 ### For end
 
