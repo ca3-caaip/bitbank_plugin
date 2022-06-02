@@ -67,16 +67,20 @@ class BitbankPlugin:
             amount_get = transaction.get_amount()
             amount_lose = transaction.get_amount() * transaction.get_price()
             token_symbol_lose = token_table.get_symbol(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
+                None,
+                token_original_id_lose,
             )
             symbol_uuid_lose = token_table.get_symbol_uuid(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
+                None,
+                token_original_id_lose,
             )
             token_symbol_get = token_table.get_symbol(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
+                None,
+                token_original_id_get,
             )
             symbol_uuid_get = token_table.get_symbol_uuid(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
+                None,
+                token_original_id_get,
             )
             token_symbol_fee = token_symbol_lose
             token_original_id_fee = token_original_id_lose
@@ -88,16 +92,20 @@ class BitbankPlugin:
             amount_lose = transaction.get_amount()
             amount_get = transaction.get_amount() * transaction.get_price()
             token_symbol_lose = token_table.get_symbol(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
+                None,
+                token_original_id_lose,
             )
             symbol_uuid_lose = token_table.get_symbol_uuid(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_lose], token_original_id_lose
+                None,
+                token_original_id_lose,
             )
             token_symbol_get = token_table.get_symbol(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
+                None,
+                token_original_id_get,
             )
             symbol_uuid_get = token_table.get_symbol_uuid(
-                CHAIN_FROM_ORIGINAL_ID[token_original_id_get], token_original_id_get
+                None,
+                token_original_id_get,
             )
             token_symbol_fee = token_symbol_get
             token_original_id_fee = token_original_id_get
