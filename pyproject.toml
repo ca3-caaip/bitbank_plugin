@@ -7,7 +7,7 @@ authors = ["settler"]
 [tool.poetry.dependencies]
 python = "^3.9"
 pandas = "^1.4.1"
-senkalib = { git = 'https://github.com/watagori/senkalib.git' }
+senkalib = { git = 'https://github.com/watagori/senkalib.git' , rev = "aa625ae114e0b84fc090639f1a8825d06ba6cf6e"}
 requests = "^2.27.1"
 
 [tool.poetry.dev-dependencies]
