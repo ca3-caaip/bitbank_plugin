@@ -37,7 +37,7 @@ class TestBitbankPlugin:
         )
 
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
-        assert caajs[2].executed_at == "2022/03/14 11:55:24"
+        assert caajs[2].executed_at == "2022-03-14 11:55:24"
         assert caajs[2].chain == "bitbank"
         assert caajs[2].platform == "bitbank"
         assert caajs[2].application == "exchange"
@@ -65,7 +65,7 @@ class TestBitbankPlugin:
 
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
-        assert caajs[2].executed_at == "2022/03/14 11:55:24"
+        assert caajs[2].executed_at == "2022-03-14 11:55:24"
         assert caajs[2].chain == "bitbank"
         assert caajs[2].platform == "bitbank"
         assert caajs[2].application == "exchange"
@@ -110,7 +110,7 @@ class TestBitbankPlugin:
 
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
-        assert caajs[0].executed_at == "2022/03/14 11:55:24"
+        assert caajs[0].executed_at == "2022-03-14 11:55:24"
         assert caajs[0].chain == "bitbank"
         assert caajs[0].platform == "bitbank"
         assert caajs[0].application == "exchange"
@@ -138,7 +138,7 @@ class TestBitbankPlugin:
 
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
-        assert caajs[1].executed_at == "2022/03/14 11:55:24"
+        assert caajs[1].executed_at == "2022-03-14 11:55:24"
         assert caajs[1].chain == "bitbank"
         assert caajs[1].platform == "bitbank"
         assert caajs[1].application == "exchange"
@@ -166,7 +166,7 @@ class TestBitbankPlugin:
 
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
-        assert caajs[0].executed_at == "2022/03/14 11:55:24"
+        assert caajs[0].executed_at == "2022-03-14 11:55:24"
         assert caajs[0].chain == "bitbank"
         assert caajs[0].platform == "bitbank"
         assert caajs[0].application == "exchange"
@@ -194,7 +194,7 @@ class TestBitbankPlugin:
 
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
-        assert caajs[1].executed_at == "2022/03/14 11:55:24"
+        assert caajs[1].executed_at == "2022-03-14 11:55:24"
         assert caajs[1].chain == "bitbank"
         assert caajs[1].platform == "bitbank"
         assert caajs[1].application == "exchange"

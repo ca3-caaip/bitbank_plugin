@@ -51,10 +51,10 @@ class BitbankPlugin:
         token_symbol_fee = ""
 
         datetime_jst = datetime.datetime.strptime(
-            transaction.get_timestamp(), "%Y/%m/%d %H:%M:%S"
+            transaction.get_timestamp().replace("/", "-"), "%Y-%m-%d %H:%M:%S"
         )
         datetime_utc = (datetime_jst - datetime.timedelta(hours=9)).strftime(
-            "%Y/%m/%d %H:%M:%S%z"
+            "%Y-%m-%d %H:%M:%S%z"
         )
         token_pair = transaction.get_token_pair().split("_")
         trade_uuid = cls._get_uuid()
