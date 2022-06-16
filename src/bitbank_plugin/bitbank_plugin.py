@@ -20,13 +20,16 @@ class BitbankPlugin:
 
     @classmethod
     def can_handle(cls, transaction: Transaction) -> bool:
-        return BitbankPlugin._check_support(transaction) == BitbankSupport.EXCHANGE
+        return (
+            BitbankPlugin._get_transaction_type(transaction)
+            != BitbankSupport.UNSUPPORTED
+        )
 
     @classmethod
     def get_caajs(
         cls, address: str, transaction: Transaction, token_table: TokenOriginalIdTable
     ) -> Union[list[CaajJournal], None]:
-        if BitbankPlugin._check_support(transaction) == BitbankSupport.EXCHANGE:
+        if BitbankPlugin._get_transaction_type(transaction) == BitbankSupport.EXCHANGE:
             return BitbankPlugin._get_caaj_exchange(transaction, token_table)
         else:
             raise ValueError("Invalid transaction data type")
@@ -34,7 +37,7 @@ class BitbankPlugin:
     @classmethod
     def _get_caaj_exchange(
         cls, transaction: Transaction, token_table: TokenOriginalIdTable
-    ) -> Union[list[CaajJournal], None]:
+    ) -> list[CaajJournal]:
         caaj = []
         amount_lose = Decimal(0)
         amount_get = Decimal(0)
@@ -55,7 +58,7 @@ class BitbankPlugin:
             "%Y-%m-%d %H:%M:%S%z"
         )
         token_pair = transaction.get_token_pair().split("_")
-        trade_uuid = cls._get_uuid()
+        trade_uuid = str(uuid.uuid4())
         fee = transaction.get_transaction_fee()
 
         trade_type = transaction.get_side()
@@ -167,12 +170,8 @@ class BitbankPlugin:
 
         return caaj
 
-    @classmethod
-    def _get_uuid(cls) -> str:
-        return str(uuid.uuid4())
-
     @staticmethod
-    def _check_support(transaction: Transaction) -> BitbankSupport:
+    def _get_transaction_type(transaction: Transaction) -> BitbankSupport:
         if transaction.transaction.keys() == set(
             [
                 "注文ID",
