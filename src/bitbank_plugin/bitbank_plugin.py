@@ -4,6 +4,7 @@ from decimal import Decimal
 from enum import Enum, auto
 from typing import Union
 
+from dateutil.parser import parse
 from senkalib.caaj_journal import CaajJournal
 from senkalib.chain.transaction import Transaction
 from senkalib.token_original_id_table import TokenOriginalIdTable
@@ -51,9 +52,7 @@ class BitbankPlugin:
         token_symbol_get = ""
         token_symbol_fee = ""
 
-        datetime_jst = datetime.datetime.strptime(
-            transaction.get_timestamp().replace("/", "-"), "%Y-%m-%d %H:%M:%S"
-        )
+        datetime_jst = parse(transaction.get_timestamp())
         datetime_utc = (datetime_jst - datetime.timedelta(hours=9)).strftime(
             "%Y-%m-%d %H:%M:%S%z"
         )
