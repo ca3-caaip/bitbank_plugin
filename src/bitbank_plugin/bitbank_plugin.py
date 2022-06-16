@@ -2,7 +2,7 @@ import datetime
 import uuid
 from decimal import Decimal
 from enum import Enum, auto
-from typing import List, Union
+from typing import Union
 
 from senkalib.caaj_journal import CaajJournal
 from senkalib.chain.transaction import Transaction
@@ -25,7 +25,7 @@ class BitbankPlugin:
     @classmethod
     def get_caajs(
         cls, address: str, transaction: Transaction, token_table: TokenOriginalIdTable
-    ) -> Union[List[CaajJournal], None]:
+    ) -> Union[list[CaajJournal], None]:
         if BitbankPlugin._check_support(transaction) == BitbankSupport.EXCHANGE:
             return BitbankPlugin._get_caaj_exchange(transaction, token_table)
         else:
@@ -34,7 +34,7 @@ class BitbankPlugin:
     @classmethod
     def _get_caaj_exchange(
         cls, transaction: Transaction, token_table: TokenOriginalIdTable
-    ) -> Union[List[CaajJournal], None]:
+    ) -> Union[list[CaajJournal], None]:
         caaj = []
         amount_lose = Decimal(0)
         amount_get = Decimal(0)
