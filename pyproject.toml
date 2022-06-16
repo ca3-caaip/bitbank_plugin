@@ -6,7 +6,6 @@ authors = ["settler"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-pandas = "^1.4.1"
 senkalib = { git = 'https://github.com/ca3-caaip/senkalib.git', rev = 'b4a41ab228f2532707f712eb11ae68da9aa1b378' }
 requests = "^2.27.1"
 
