@@ -8,8 +8,6 @@ from senkalib.caaj_journal import CaajJournal
 from senkalib.chain.transaction import Transaction
 from senkalib.token_original_id_table import TokenOriginalIdTable
 
-CHAIN_FROM_ORIGINAL_ID = {"mona": "monacoin", "jpy": "boj"}
-
 
 class BitbankSupport(Enum):
     EXCHANGE = auto()
