@@ -6,7 +6,7 @@ from typing import Union
 
 from dateutil.parser import parse
 from senkalib.caaj_journal import CaajJournal
-from senkalib.chain.transaction import Transaction
+from senkalib.platform.transaction import Transaction
 from senkalib.token_original_id_table import TokenOriginalIdTable
 
 
@@ -16,8 +16,8 @@ class BitbankSupport(Enum):
 
 
 class BitbankPlugin:
-    chain = "bitbank"
     platform = "bitbank"
+    application = "bitbank"
 
     @classmethod
     def can_handle(cls, transaction: Transaction) -> bool:
@@ -113,8 +113,8 @@ class BitbankPlugin:
 
         caaj_journal_lose = CaajJournal(
             datetime_utc,
-            cls.chain,
             cls.platform,
+            cls.application,
             "exchange",
             transaction.get_transaction_id(),
             trade_uuid,
@@ -130,8 +130,8 @@ class BitbankPlugin:
 
         caaj_journal_get = CaajJournal(
             datetime_utc,
-            cls.chain,
             cls.platform,
+            cls.application,
             "exchange",
             transaction.get_transaction_id(),
             trade_uuid,
@@ -151,8 +151,8 @@ class BitbankPlugin:
         if fee > Decimal(0):
             caaj_journal_fee = CaajJournal(
                 datetime_utc,
-                cls.chain,
                 cls.platform,
+                cls.application,
                 "exchange",
                 transaction.get_transaction_id(),
                 trade_uuid,

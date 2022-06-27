@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Union
 from unittest.mock import MagicMock
 
-from senkalib.chain.bitbank.bitbank_transaction import BitbankTransaction
+from senkalib.platform.bitbank.bitbank_transaction import BitbankTransaction
 from senkalib.token_original_id_table import TokenOriginalIdTable
 
 from bitbank_plugin.bitbank_plugin import BitbankPlugin
@@ -19,9 +19,9 @@ class TestBitbankPlugin:
             "tests/data/bitbank_sample.json", 0
         )
         transaction = BitbankTransaction(test_data)
-        chain_type = BitbankPlugin.can_handle(transaction)
-        print(chain_type)
-        assert chain_type
+        platform_type = BitbankPlugin.can_handle(transaction)
+        print(platform_type)
+        assert platform_type
 
     def test_get_caajs_buy_fee(self, requests_mock):
         test_data = TestBitbankPlugin._get_test_data(
@@ -38,9 +38,9 @@ class TestBitbankPlugin:
 
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
         assert caajs[2].executed_at == "2022-03-14 11:55:24"
-        assert caajs[2].chain == "bitbank"
         assert caajs[2].platform == "bitbank"
-        assert caajs[2].application == "exchange"
+        assert caajs[2].application == "bitbank"
+        assert caajs[2].service == "exchange"
         assert caajs[2].transaction_id == "1215140489"
         assert caajs[2].type == "lose"
         assert caajs[2].amount == Decimal("71.4924")
@@ -66,9 +66,9 @@ class TestBitbankPlugin:
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
         assert caajs[2].executed_at == "2022-03-14 11:55:24"
-        assert caajs[2].chain == "bitbank"
         assert caajs[2].platform == "bitbank"
-        assert caajs[2].application == "exchange"
+        assert caajs[2].application == "bitbank"
+        assert caajs[2].service == "exchange"
         assert caajs[2].transaction_id == "1215140486"
         assert caajs[2].type == "lose"
         assert caajs[2].amount == Decimal("71.4924")
@@ -111,9 +111,9 @@ class TestBitbankPlugin:
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
         assert caajs[0].executed_at == "2022-03-14 11:55:24"
-        assert caajs[0].chain == "bitbank"
         assert caajs[0].platform == "bitbank"
-        assert caajs[0].application == "exchange"
+        assert caajs[0].application == "bitbank"
+        assert caajs[0].service == "exchange"
         assert caajs[0].transaction_id == "1215140489"
         assert caajs[0].type == "lose"
         assert caajs[0].amount == Decimal("59577.0126674")
@@ -139,9 +139,9 @@ class TestBitbankPlugin:
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
         assert caajs[1].executed_at == "2022-03-14 11:55:24"
-        assert caajs[1].chain == "bitbank"
         assert caajs[1].platform == "bitbank"
-        assert caajs[1].application == "exchange"
+        assert caajs[1].application == "bitbank"
+        assert caajs[1].service == "exchange"
         assert caajs[1].transaction_id == "1215140489"
         assert caajs[1].type == "get"
         assert caajs[1].amount == Decimal("537.8006")
@@ -167,9 +167,9 @@ class TestBitbankPlugin:
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
         assert caajs[0].executed_at == "2022-03-14 11:55:24"
-        assert caajs[0].chain == "bitbank"
         assert caajs[0].platform == "bitbank"
-        assert caajs[0].application == "exchange"
+        assert caajs[0].application == "bitbank"
+        assert caajs[0].service == "exchange"
         assert caajs[0].transaction_id == "1215140486"
         assert caajs[0].type == "lose"
         assert caajs[0].amount == Decimal("537.8006")
@@ -195,9 +195,9 @@ class TestBitbankPlugin:
         caajs = BitbankPlugin.get_caajs("self", transaction, token_original_ids)
 
         assert caajs[1].executed_at == "2022-03-14 11:55:24"
-        assert caajs[1].chain == "bitbank"
         assert caajs[1].platform == "bitbank"
-        assert caajs[1].application == "exchange"
+        assert caajs[1].application == "bitbank"
+        assert caajs[1].service == "exchange"
         assert caajs[1].transaction_id == "1215140486"
         assert caajs[1].type == "get"
         assert caajs[1].amount == Decimal("59577.0126674")
@@ -214,10 +214,10 @@ class TestBitbankPlugin:
 
     @classmethod
     def _get_token_table_mock(cls):
-        def _mock_get_symbol(chain: str, token_original_id: str) -> Union[str, None]:
+        def _mock_get_symbol(platform: str, token_original_id: str) -> Union[str, None]:
             return "test_symbol"
 
-        def _mock_get_symbol_uuid(chain: str, token_original_id: str) -> str:
+        def _mock_get_symbol_uuid(platform: str, token_original_id: str) -> str:
             return "3a2570c5-15c4-2860-52a8-bff14f27a236"
 
         mock = MagicMock()
