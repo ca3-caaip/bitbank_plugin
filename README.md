@@ -24,7 +24,7 @@ $ docker-compose down --rmi all --volumes --remove-orphans
 
 ```
 If you have not yet installed poetry, first install poetry as follows
-$ curl -sSL https://install.python-poetry.org | python3 -
+$ curl -sSL https://install.python-poetry.org | python - --preview
 Set the poetry path as the log shows.
 $ export PATH="$HOME/.local/bin:$PATH"
 Set up the python environment as follows.
