@@ -44,13 +44,9 @@ class BitbankPlugin:
         amount_get = Decimal(0)
         token_original_id_lose = ""
         token_original_id_get = ""
-        token_original_id_fee = ""
-        symbol_uuid_lose = ""
-        symbol_uuid_get = ""
-        symbol_uuid_fee = ""
-        token_symbol_lose = ""
-        token_symbol_get = ""
-        token_symbol_fee = ""
+        uti_lose = ""
+        uti_get = ""
+        uti_fee = ""
 
         datetime_jst = parse(transaction.get_timestamp())
         datetime_utc = (datetime_jst - datetime.timedelta(hours=9)).strftime(
@@ -66,50 +62,33 @@ class BitbankPlugin:
             token_original_id_lose = token_pair[1]
             amount_get = transaction.get_amount()
             amount_lose = transaction.get_amount() * transaction.get_price()
-            token_symbol_lose = token_table.get_symbol(
-                None,
+            uti_lose = token_table.get_uti(
+                BitbankPlugin.platform,
                 token_original_id_lose,
             )
-            symbol_uuid_lose = token_table.get_symbol_uuid(
-                None,
-                token_original_id_lose,
-            )
-            token_symbol_get = token_table.get_symbol(
-                None,
+
+            uti_get = token_table.get_uti(
+                BitbankPlugin.platform,
                 token_original_id_get,
             )
-            symbol_uuid_get = token_table.get_symbol_uuid(
-                None,
-                token_original_id_get,
-            )
-            token_symbol_fee = token_symbol_lose
-            token_original_id_fee = token_original_id_lose
-            symbol_uuid_fee = symbol_uuid_lose
+            uti_fee = uti_lose
 
         elif trade_type == "sell":
             token_original_id_get = token_pair[1]
             token_original_id_lose = token_pair[0]
             amount_lose = transaction.get_amount()
             amount_get = transaction.get_amount() * transaction.get_price()
-            token_symbol_lose = token_table.get_symbol(
-                None,
+            uti_lose = token_table.get_uti(
+                BitbankPlugin.platform,
                 token_original_id_lose,
             )
-            symbol_uuid_lose = token_table.get_symbol_uuid(
-                None,
-                token_original_id_lose,
-            )
-            token_symbol_get = token_table.get_symbol(
-                None,
+
+            uti_get = token_table.get_uti(
+                BitbankPlugin.platform,
                 token_original_id_get,
             )
-            symbol_uuid_get = token_table.get_symbol_uuid(
-                None,
-                token_original_id_get,
-            )
-            token_symbol_fee = token_symbol_get
-            token_original_id_fee = token_original_id_get
-            symbol_uuid_fee = symbol_uuid_get
+
+            uti_fee = uti_get
 
         caaj_journal_lose = CaajJournal(
             datetime_utc,
@@ -120,9 +99,7 @@ class BitbankPlugin:
             trade_uuid,
             "lose",
             amount_lose,
-            token_symbol_lose,
-            token_original_id_lose,
-            symbol_uuid_lose,
+            uti_lose,
             "self",
             "bitbank",
             "",
@@ -137,9 +114,7 @@ class BitbankPlugin:
             trade_uuid,
             "get",
             amount_get,
-            token_symbol_get,
-            token_original_id_get,
-            symbol_uuid_get,
+            uti_get,
             "self",
             "bitbank",
             "",
@@ -158,9 +133,7 @@ class BitbankPlugin:
                 trade_uuid,
                 "lose",
                 fee,
-                token_symbol_fee,
-                token_original_id_fee,
-                symbol_uuid_fee,
+                uti_fee,
                 "self",
                 "bitbank",
                 "",
