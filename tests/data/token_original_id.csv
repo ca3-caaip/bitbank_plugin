@@ -1,38 +1,56 @@
-uti,platform,original_id,description,primary
-atom/cosmos,osmosis,ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2,native token for cosmos,
-atom/cosmos,bsc,0x0Eb3a705fc54725037CC9e008bDede697f62F335,native token for cosmos,
-atom/cosmos,cosmos,atom,native token for cosmos,TRUE
-juno/juno,osmosis,ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED,native token for juno,
-luna/terra,osmosis,ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0,native token for terra,
-ust/terra,osmosis,ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC,doller peg token on terra,
-osmo/osmosis,osmosis,osmo,native token for osmosis,TRUE
-umee/umee,osmosis,ibc/67795E528DF67C5606FC20F824EA39A6EF55BA133F4DC79C90A8C47A0901E17C,Umee is a cross chain DeFi hub that interconnects between blockchains,
-scrt/secret,osmosis,ibc/0954E1C28EB7AF5B72D24F3BC2B47BBB2FDF91BDDFD57B74B99E133AED40972A,Native token for secret network,
-cro/cro,osmosis,ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1,native token for crypto.org,
-xprt/persistence,osmosis,ibc/A0CC0CF735BFB30E730C70019D4218A1244FF383503FF7579C9201AB93CA9293,native token for Persistence,
-akt/akash,osmosis,ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4,native token for akash,
-regen/regen,osmosis,ibc/1DCC8A6CB5689018431323953344A9F6CC4D0BFB261E88C9F7777372C10CD076,native token for regen network,
-dvpn/sentinel,osmosis,ibc/9712DBB13B9631EDFA9BF61B55F1B2D290B2ADB67E3A4EB3A875F3B6081B3B84,native token for sentinel,
-iris/iris,osmosis,ibc/7C4D60AA95E5A7558B0A364860979CA34B7FF8AAF255B87AF9E879374470CEC0,native token for irisnet,
-kava/kava,kava,kava,native token for kava,TRUE
-hard/kava,kava,hard,governance token of kava lend,TRUE
-swp/kava,kava,swp,governance token of kava swap,TRUE
-busd/kava,kava,busd,doller peg token by binance,TRUE
-usdx/kava,kava,usdx,doller stable token on kava,TRUE
-mona/monacoin,monacoin,mona,token originated from the Japanese internet (2ch),TRUE
-jpy/boj,boj,jpy,japan's key currency,TRUE
-btc/bitcoin,bitcoin,btc,native token for bitcoin,TRUE
-xrp/ripple,ripple,xrp,native token for  ripple,TRUE
-eth/ethereum,ethereum,eth,native token for ethereum,TRUE
-ltc/litecoin,litecoin,ltc,native token for litecoin,TRUE
-bch/bitcoincash,bitbank,bcc,native token for bitcoin cash handled by bitbank,
-bch/bitcoincash,bitcoincash,bch,native token for bitcoincash ,TRUE
-xlm/steller,stellar,xlm,native token for stellar,TRUE
-qtum/qtum,qtum,qtum,native token for qtum,TRUE
-bat/bat,bat,bat,native token for  brave browser,TRUE
-omg/omg,omg,omg,native token for omg network,TRUE
-xym/symbol,symbol,xym,native token for symbol,TRUE
-link/chainlink,chainlink,link,native token for chainlink,TRUE
-mrk/maker,maker,mrk,native token for maker,TRUE
-boba/boba,boba,boba,native token for boba,TRUE
-enj/enjin,enjin,enj,native token for enjin,TRUE
+uti,platform,original_id
+atom,osmosis,ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2
+atom,bsc,0x0Eb3a705fc54725037CC9e008bDede697f62F335
+atom,cosmos,atom
+juno,juno,juno
+juno,osmosis,ibc/46B44899322F3CD854D2D46DEEF881958467CDD4B3B10086DA49296BBED94BED
+luna,terra,terra
+luna,osmosis,ibc/0EF15DF2F02480ADE0BB6E85D9EBB5DAEA2836D3860E9F97F9AADE4F57A31AA0
+ust,terra,ust
+ust,osmosis,ibc/BE1BB42D4BE3C30D50B68D7C41DB4DFCE9678E8EF8C539F6E6A9345048894FCC
+osmo,osmosis,osmo
+umee,umee,umee
+umee,osmosis,ibc/67795E528DF67C5606FC20F824EA39A6EF55BA133F4DC79C90A8C47A0901E17C
+scrt,secret,scrt
+scrt,osmosis,ibc/0954E1C28EB7AF5B72D24F3BC2B47BBB2FDF91BDDFD57B74B99E133AED40972A
+cro,cro,cro
+cro,osmosis,ibc/E6931F78057F7CC5DA0FD6CEF82FF39373A6E0452BF1FD76910B93292CF356C1
+xrpt,persistence,xrpt
+xrpt,osmosis,ibc/A0CC0CF735BFB30E730C70019D4218A1244FF383503FF7579C9201AB93CA9293
+akt,akash,akt
+akt,osmosis,ibc/1480B8FD20AD5FCAE81EA87584D269547DD4D436843C1D20F15E00EB64743EF4
+regen,regen,regen
+regen,osmosis,ibc/1DCC8A6CB5689018431323953344A9F6CC4D0BFB261E88C9F7777372C10CD076
+dvpn,sentinel,dvpn
+dvpn,osmosis,ibc/9712DBB13B9631EDFA9BF61B55F1B2D290B2ADB67E3A4EB3A875F3B6081B3B84
+iris,iris,iris
+iris,osmosis,ibc/7C4D60AA95E5A7558B0A364860979CA34B7FF8AAF255B87AF9E879374470CEC0
+kava,kava,kava
+hard,kava,hard
+swp,kava,swp
+busd,kava,busd
+usdx,kava,usdx
+mona,monacoin,mona
+jpy,boj,jpy
+btc,bitcoin,btc
+xrp,ripple,xrp
+eth,ethereum,eth
+ltc,litecoin,ltc
+bch,bitbank,bcc
+bch,bitcoincash,bch
+xlm,stellar,xlm
+qtum,qtum,qtum
+bat,bat,bat
+omg,omg,omg
+xym,symbol,xym
+link,chainlink,link
+mkr,maker,mkr
+boba,boba,boba
+enj,enjin,enj
+bnb,bsc,bnb
+bnb,bsc,0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c
+eth,bsc,0x2170Ed0880ac9A755fd29B2688956BD959F933F8
+cake,bsc,0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82
+btc,bsc,0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c
+busd,bsc,0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56
+busd,,busd
