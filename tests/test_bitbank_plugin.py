@@ -44,7 +44,7 @@ class TestBitbankPlugin:
         assert caajs[2].transaction_id == "1215140489"
         assert caajs[2].type == "lose"
         assert caajs[2].amount == Decimal("71.4924")
-        assert caajs[2].uti == "jpy/boj"
+        assert caajs[2].uti == "jpy"
         assert caajs[2].caaj_from == "self"
         assert caajs[2].caaj_to == "bitbank"
         assert caajs[2].comment == ""
@@ -71,7 +71,7 @@ class TestBitbankPlugin:
         assert caajs[2].transaction_id == "1215140486"
         assert caajs[2].type == "lose"
         assert caajs[2].amount == Decimal("71.4924")
-        assert caajs[2].uti == "jpy/boj"
+        assert caajs[2].uti == "jpy"
         assert caajs[2].caaj_from == "self"
         assert caajs[2].caaj_to == "bitbank"
         assert caajs[2].comment == ""
@@ -115,7 +115,7 @@ class TestBitbankPlugin:
         assert caajs[0].transaction_id == "1215140489"
         assert caajs[0].type == "lose"
         assert caajs[0].amount == Decimal("59577.0126674")
-        assert caajs[0].uti == "jpy/boj"
+        assert caajs[0].uti == "jpy"
         assert caajs[0].caaj_from == "self"
         assert caajs[0].caaj_to == "bitbank"
         assert caajs[0].comment == ""
@@ -142,7 +142,7 @@ class TestBitbankPlugin:
         assert caajs[1].transaction_id == "1215140489"
         assert caajs[1].type == "get"
         assert caajs[1].amount == Decimal("537.8006")
-        assert caajs[1].uti == "mona/monacoin"
+        assert caajs[1].uti == "mona"
         assert caajs[1].caaj_from == "self"
         assert caajs[1].caaj_to == "bitbank"
         assert caajs[1].comment == ""
@@ -169,7 +169,7 @@ class TestBitbankPlugin:
         assert caajs[0].transaction_id == "1215140486"
         assert caajs[0].type == "lose"
         assert caajs[0].amount == Decimal("537.8006")
-        assert caajs[0].uti == "mona/monacoin"
+        assert caajs[0].uti == "mona"
         assert caajs[0].caaj_from == "self"
         assert caajs[0].caaj_to == "bitbank"
         assert caajs[0].comment == ""
@@ -196,7 +196,7 @@ class TestBitbankPlugin:
         assert caajs[1].transaction_id == "1215140486"
         assert caajs[1].type == "get"
         assert caajs[1].amount == Decimal("59577.0126674")
-        assert caajs[1].uti == "jpy/boj"
+        assert caajs[1].uti == "jpy"
         assert caajs[1].caaj_from == "self"
         assert caajs[1].caaj_to == "bitbank"
         assert caajs[1].comment == ""
