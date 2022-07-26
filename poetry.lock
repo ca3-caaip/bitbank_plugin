@@ -679,7 +679,7 @@ diagrams = ["railroad-diagrams", "jinja2"]
 
 [[package]]
 name = "pyright"
-version = "1.1.262"
+version = "1.1.263"
 description = "Command line wrapper for pyright"
 category = "dev"
 optional = false
@@ -855,8 +855,8 @@ web3 = "^5.29.0"
 [package.source]
 type = "git"
 url = 'https://github.com/ca3-caaip/senkalib.git'
-reference = 'f488ab01979ffd9f7245073d8148756426262cf7'
-resolved_reference = "f488ab01979ffd9f7245073d8148756426262cf7"
+reference = 'd0386559fd77d492298f0fabdad919d6da21dc07'
+resolved_reference = "d0386559fd77d492298f0fabdad919d6da21dc07"
 
 [[package]]
 name = "setuptools"
@@ -913,7 +913,7 @@ python-versions = ">=3.7"
 
 [[package]]
 name = "urllib3"
-version = "1.26.10"
+version = "1.26.11"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 category = "main"
 optional = false
@@ -1004,7 +1004,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.9"
-content-hash = "34bfe57e6a1c62ee98511b738b36212c1bfbfc17e1f6e16cc1bda4f556c58c09"
+content-hash = "de923c47b306ca002b08834b98c57219df7537665a547c7eb50d5110f94c38bc"
 
 [metadata.files]
 aiohttp = [
